@@ -4,7 +4,7 @@
 
 This repository is an implementation of the neural network proposed in [Free-form Scanning of Non-planar Appearance with Neural Trace Photography](https://svbrdf.github.io/publications/scanner/project.html)
 
-For any questions, please email xiaohema1998 at gmail.com 
+For any questions, please email xiaohema98 at gmail.com 
 ## Usage
 ### System Requirement
 
@@ -268,6 +268,14 @@ Note: If you find the split.sh cannot run properly and complain about
     
 </table>
 
+### 7. Render results
+<table>
+    <tr>
+        <td align="center"><img src='./imgs/render1.png'></td> 
+        <td align="center"><img src='./imgs/render2.png'></td> 
+    </tr>
+    
+</table>
 
 ## Reference & Third party tools
 Colmap: https://demuc.de/colmap/
