@@ -1,0 +1,21 @@
+SET DATA_ROOT="G:/SIG20_freshmeat/12_26_test1cam/shot_results/sig19a/images/"
+SET DATA_FILE_NAME_BASE="ps_slice"
+SET /A IF_DUMP=1
+SET /A IF_ORIGIN_COLORFUL=1
+SET /A IF_USE_GUESSED_PARAM=0
+
+SET FITTING_TASK=ps_only
+SET PS_CONFIG_FILE_NAME=tf_ggx_render_configs_cube_slice_64x64
+SET PS_LENGTH=6144
+SET PS_SUBSAMPLE_RATE=2
+SET PS_EDGE_SAMPLE_NUM=64
+SET FIXNORMAL=0
+python tf_ggx_fittinger.py 0 %DATA_ROOT% %IF_ORIGIN_COLORFUL% %IF_DUMP% %DATA_FILE_NAME_BASE% %IF_USE_GUESSED_PARAM% %PS_CONFIG_FILE_NAME% %FITTING_TASK% %PS_LENGTH% %PS_SUBSAMPLE_RATE% %PS_EDGE_SAMPLE_NUM% %FIXNORMAL%
+
+::python tf_ggx_render_visualizer.py 0 %DATA_ROOT% %IF_ORIGIN_COLORFUL%
+
+::SET /A THREAD_NUM= 1
+::SET WANTED_LIGHT_PAN="G:/2019_fresh_meat/3_11_beer_can/pattern/wanted_lights.txt"
+::python fitted_results_render.py %THREAD_NUM% %DATA_ROOT% %IF_ORIGIN_COLORFUL% 
+::%WANTED_LIGHT_PAN%
+::python fitted_results_combiner.py %THREAD_NUM% %DATA_ROOT%

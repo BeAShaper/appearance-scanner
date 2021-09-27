@@ -1,0 +1,6 @@
+RMS error reported by calibrateCamera: 0.249595
+Calibration succeeded. avg reprojection error = 0.25
+aperture (w/h) : 0 / 0
+fov      (x/y) : 29.1677 / 24.2364
+focal length   : 4704.44
+aspect ratio   : 1.01375

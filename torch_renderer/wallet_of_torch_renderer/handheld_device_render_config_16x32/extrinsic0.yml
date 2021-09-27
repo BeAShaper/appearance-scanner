@@ -1,0 +1,15 @@
+%YAML:1.0
+---
+calibration_time: "Sat Nov 21 10:02:48 2020"
+rvec: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ -2.9716431217264829e-02, 6.1154339654172973e-01,
+       -3.0461475893451526e+00 ]
+tvec: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: d
+   data: [ -8.4806594848632813e+00, -2.7905023574829102e+01,
+       3.2113644409179688e+02 ]

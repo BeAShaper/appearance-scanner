@@ -4,6 +4,7 @@
 
 This repository is an implementation of the neural network proposed in [Free-form Scanning of Non-planar Appearance with Neural Trace Photography](https://svbrdf.github.io/publications/scanner/project.html)
 
+For any question, please email xiaohema98 at gmail.com 
 ## Usage
 ### System Requirement
 
@@ -11,6 +12,7 @@ This repository is an implementation of the neural network proposed in [Free-for
 + Python >= 3.6.0
 + Pytorch >= 1.6.0
 + tensorflow>=1.11.0, meshlab and matlab are needed if you process the test data we provide  
+
 
 ### Training
 
@@ -40,6 +42,7 @@ There will be two log images of a certain training sample, one is the sampled lu
 Trained lighting pattern will also be showed. Trained model will be found in the `log_dir` set in train.bat/train.sh.
 
 ### License
+Our source code is released under the GPL-3.0 license for acadmic purposes. The only requirement for using the code in your research is to cite our paper: 
 
 ```
 @article{Ma:2021:Scanner,
@@ -64,15 +67,15 @@ keywords = {illumination multiplexing, SVBRDF, optimal lighting pattern}
 For commercial licensing options, please email hwu at acm.org.
 See COPYING for the open source license.
 
-
+The third party remeshing tool ACVD and alignment tool CPD are not under our protection.
 
 
 
 ## Reconstruction process
 
-Download our Cheongsam test data and unzip it in the data folder.
+Download our [Cheongsam](https://drive.google.com/file/d/1KOAJcUrDdWgEWN_obL5ccwNYJRrgFdua/view?usp=sharing) test data and unzip it in appearance_scanner/data/.
 
-Link: 
+Download our [model](https://drive.google.com/file/d/1qWEusL4JfGcp2Wqt64clsBWOAae-SHU0/view?usp=sharing) and unzip it in appearance_scanner/.
 
 ### 1. Camera Registration 
 
@@ -117,7 +120,7 @@ Do **not** tick `refine_focal_length/refine_principal_point/refine_extra_params`
 
 **1.2.6** 
 
-Make a folder named undistort_feature in Cheongsam/ and  export model as text in undistort_feature folder
+Make a folder named **undistort_feature** in Cheongsam/ and export model as text in undistort_feature folder. Three files including cameras.txt, images.txt and point3D.txt will be saved.
 
 
 
@@ -150,7 +153,9 @@ Save fused.ply.
 
 ### 2. Extract measurements
 
-run extract_measurements/run.bat 
+move your own model to `models/` and run `appearance_scanner/test_files/prepare_pattern.bat`
+
+run `extract_measurements/run.bat`
 
 ### 3. Align mesh
 
@@ -181,11 +186,15 @@ You should open fused.ply and meshed-poisson_obj.ply in the same meshlab window 
 
 #### 4.1
 
- run `ACVD/aarun.bat` and save undistort_feature/meshed-poisson_obj_remeshed.ply as undistort_feature/meshed-poisson_obj_remeshed.obj
+ run `ACVD/aarun.bat`  
+ 
+ save undistort_feature/meshed-poisson_obj_remeshed.ply as undistort_feature/meshed-poisson_obj_remeshed.obj
 
 #### 4.2
 
 copy data_processing/device_configuration/extrinsic.bin to undistort_feature/
+copy Cheongsam/512.exr and 1024.exr to undistort_feature/
+
 run `generate_texture/trans.bat` to transform mesh from colmap frame to world frame in our system and generate uv maps.
 
 We recommend that you generate uv maps with resolution of 512x512 because it will save a lot of time and retain most details. The resolution of the results in our paper is 1024x1024. 
@@ -198,7 +207,7 @@ in `generate_texture/texgen.bat`, set `TEXTURE_RESOLUTION` to the certain resolu
 
 choose the same line or the other reference on meshed-poisson_obj_remeshed.obj and on the physical object, then meature the lengths of both. Set the results to `COLMAP_L` and `REAL_L`. `REAL_L` in mm.
 
-<img src="./imgs/scalar.png" title="scalar">
+<img src="./imgs/SCALAR.png" width=60% title="scalar">
 
 The marker cylinder's diameter is 10cm, so we set `REAL_L` to 100.
 
@@ -207,6 +216,46 @@ run `generate_texture/texgen.bat` to output view information of all registrated 
 
 ### 5. Gather data
 
-run `gather_data/run.bat` to gather the inputs to the network for each valid pixel on the texture map.
+run `gather_data/run.bat` to gather the inputs to the network for each valid pixel on the texture map. A folder named images_{resolution} will be made in Cheongsam/.
+
+### 6. Fitting
+
+1. Change %DATA_ROOT% and %TEXTURE_MAP_SIZE% in `fitting/tf_ggx_render/run.bat`. Then run `fitting/tf_ggx_render/run.bat`.  
+2. A folder named `fitting_folder_for_server` will be generated under texture_{resolution}.  
+3. Upload the entire folder generated in previous step to a linux server.  
+4. Change current path of terminal to `fitting_folder_for_server\fitting_temp\tf_ggx_render`, then run `split.sh` or `split1024.sh` according to the resolution you chosen. (split.sh is for 512. If you want to use custom texture map resolution, you may need to modify the $TEX_RESOLUTION in split.sh)
+5. When the fitting procedure finished, a folder named `Cheongsam/images_{resolution}/data_for_server/data/images/data_for_server/fitted_grey` will be generated. It contains the final texture maps, including normal_fitted_global.exr, tangent_fitted_global.exr, axay_fitted.exr, pd_fitted.exr and ps_fitted.exr.  
+Note: If you find the split.sh cannot run properly and complain about abscent which_server argument, it's probably caused by the difference of linux and windows. Reading in the sh file and writing it with no changing of content on sever can fix this issue.## Reference 
+
+<table>
+    <tr>
+        <td align="center"><img src='./imgs/pd_fitted.png' width=250 height=250></td> 
+        <td align="center"><img src='./imgs/ps_fitted.png' width=250 height=250></td> 
+        <td align="center"><img src='./imgs/axay_fitted.png' width=250 height=250></td> 
+    </tr>
+    <tr>
+        <td align="center">diffuse</td>
+        <td align="center">specular(with exposure -3 in photoshop)</td>
+        <td align="center">roughness</td>
+    </tr>
+    <tr>
+        <td align="center"><img src='./imgs/normal_fitted_global.png' width=250 height=250></td> 
+        <td align="center"><img src='./imgs/tangent_fitted_global.png' width=250 height=250></td> 
+    </tr>
+    <tr>
+        <td align="center">normal</td>
+        <td align="center">tangent</td>
+    </tr>
+    
+</table>
+
+
+## Reference & Third party tools
+Colmap: https://demuc.de/colmap/
+
+Coherent Point Drift: https://ieeexplore.ieee.org/document/5432191
+
+ACVD: https://github.com/valette/ACVD
+
 
 
