@@ -4,7 +4,7 @@
 
 This repository is an implementation of the neural network proposed in [Free-form Scanning of Non-planar Appearance with Neural Trace Photography](https://svbrdf.github.io/publications/scanner/project.html)
 
-For any questions, please email xiaohema98 at gmail.com 
+For any questions, please email xiaohema1998 at gmail.com 
 ## Usage
 ### System Requirement
 
