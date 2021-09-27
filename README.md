@@ -75,7 +75,26 @@ The third party remeshing tool ACVD and alignment tool CPD are not under our pro
 
 Download our [Cheongsam](https://drive.google.com/file/d/1KOAJcUrDdWgEWN_obL5ccwNYJRrgFdua/view?usp=sharing) test data and unzip it in appearance_scanner/data/.
 
-Download our [model](https://drive.google.com/file/d/1qWEusL4JfGcp2Wqt64clsBWOAae-SHU0/view?usp=sharing) and unzip it in appearance_scanner/.
+
+<table>
+<tr>
+<td>
+<img src="./imgs/pd_predicted_118_0.png" height=300 title="project">
+</td>
+<td>
+<img src="./imgs/pd_predicted_370_0.png" height=300 title="project">
+</td>
+<td>
+<img src="./imgs/pd_predicted_616_0.png" height=300 title="project">
+</td>
+</tr>
+
+</table>
+
+
+Sample photographs captured from the Cheongsam object. The brightness of the original images has been doubled for a better visualization.
+ 
+Download  our [model](https://drive.google.com/file/d/1qWEusL4JfGcp2Wqt64clsBWOAae-SHU0/view?usp=sharing) and unzip it in appearance_scanner/.
 
 ### 1. Camera Registration 
 
