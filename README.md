@@ -88,14 +88,12 @@ Download our [Cheongsam](https://drive.google.com/file/d/1KOAJcUrDdWgEWN_obL5ccw
             <img src="./imgs/pd_predicted_616_0.png" width="100%" title="shot photo">
         </td>
     </tr>
-    <tr>
-        Sample photographs captured from the Cheongsam object. The brightness of the original images has been doubled for a better visualization.
-    </tr>
 </table>
 
+Three sample photographs captured from the Cheongsam object. The brightness of the original images has been doubled for a better visualization.     
 
 
- 
+
 Download  our [model](https://drive.google.com/file/d/1qWEusL4JfGcp2Wqt64clsBWOAae-SHU0/view?usp=sharing) and unzip it in appearance_scanner/.
 
 ### 1. Camera Registration 
