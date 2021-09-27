@@ -79,13 +79,13 @@ Download our [Cheongsam](https://drive.google.com/file/d/1KOAJcUrDdWgEWN_obL5ccw
 <table>
 <tr>
 <td>
-<img src="./imgs/pd_predicted_118_0.png" height=300 title="project">
+<img src="./imgs/pd_predicted_118_0.png" width="100%" title="shot photo">
 </td>
 <td>
-<img src="./imgs/pd_predicted_370_0.png" height=300 title="project">
+<img src="./imgs/pd_predicted_370_0.png" width="100%" title="shot photo">
 </td>
 <td>
-<img src="./imgs/pd_predicted_616_0.png" height=300 title="project">
+<img src="./imgs/pd_predicted_616_0.png" width="100%" title="shot photo">
 </td>
 </tr>
 
@@ -248,9 +248,9 @@ Note: If you find the split.sh cannot run properly and complain about
 
 <table>
     <tr>
-        <td align="center"><img src='./imgs/pd_fitted.png' width=250 height=250></td> 
-        <td align="center"><img src='./imgs/ps_fitted.png' width=250 height=250></td> 
-        <td align="center"><img src='./imgs/axay_fitted.png' width=250 height=250></td> 
+        <td align="center"><img src='./imgs/pd_fitted.png' width="100%"></td> 
+        <td align="center"><img src='./imgs/ps_fitted.png' width="100%"></td> 
+        <td align="center"><img src='./imgs/axay_fitted.png' width="100%"></td> 
     </tr>
     <tr>
         <td align="center">diffuse</td>
@@ -258,8 +258,8 @@ Note: If you find the split.sh cannot run properly and complain about
         <td align="center">roughness</td>
     </tr>
     <tr>
-        <td align="center"><img src='./imgs/normal_fitted_global.png' width=250 height=250></td> 
-        <td align="center"><img src='./imgs/tangent_fitted_global.png' width=250 height=250></td> 
+        <td align="center"><img src='./imgs/normal_fitted_global.png' width="100%"></td> 
+        <td align="center"><img src='./imgs/tangent_fitted_global.png' width="100%"></td> 
     </tr>
     <tr>
         <td align="center">normal</td>
