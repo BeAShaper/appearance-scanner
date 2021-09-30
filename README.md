@@ -108,7 +108,7 @@ Download  our [model](https://drive.google.com/file/d/1qWEusL4JfGcp2Wqt64clsBWOA
 
 **1.2.2** Feature extraction
 
-Copy the parameters of our camera in Cheongsam/cam.txt to `Custom parameters`.
+Copy the parameters of our camera in device_configuration/cam.txt to `Custom parameters`.
 
 <img src="./imgs/feature_extraction.png" title="feature extraction">
 
