@@ -67,11 +67,13 @@ keywords = {illumination multiplexing, SVBRDF, optimal lighting pattern}
 For commercial licensing options, please email hwu at acm.org.
 See COPYING for the open source license.
 
-The third party remeshing tool ACVD and alignment tool CPD are not under our protection.
-
 
 
 ## Reconstruction process
+
+The reconstruction needs photographs taken with our scanner, a pre-trained network model and a pre-captured geometry shape as input. First, perform structure-from-motion with COLMAP, resulting in a 3D point cloud and camera poses with respect to it. Next, this point cloud is precisely aligned with
+the pre-captured shape. Then the view information of each vertex can be assembled as the input of the network. Last, we fit the predicted grayscale specular lumitexel with L-BFGS-B, to obtain the refletance parameters.
+
 
 Download our [Cheongsam](https://drive.google.com/file/d/1KOAJcUrDdWgEWN_obL5ccwNYJRrgFdua/view?usp=sharing) test data and unzip it in appearance_scanner/data/.
 
@@ -181,6 +183,7 @@ run `extract_measurements/run.bat`
 #### 3.1 Use meshlab to align mesh roughly
 
 Open fused.ply and Cheongsam/scan/Cheongsam.ply in the same meshlab window.
+Cheongsam.ply is pre-capptured with a commercial mobile 3D scanner, EinScan Pro 2X Plus.
 
 <img src="./imgs/meshlab_align.png" title="meshlab align">
 
@@ -192,7 +195,7 @@ run `CoherentPointDrift/run.bat` to align Cheongsam.ply to fused.ply.
 
 #### 3.2 Further Alignment
 
-run `CoherentPointDrift/CoherentPointDrift-master/simplify/run.bat` to simplify two meshes.
+run `CoherentPointDrift/CoherentPointDrift-master/simplify/run.bat` to simplify two meshes. It will call meshlabserver to simplify two meshes so that save the processing time.
 
 Open the CPD project in Matlab and run `main.m`.
 <img src="./imgs/aln2.png" title="matlab align">
@@ -203,13 +206,16 @@ You should open fused.ply and meshed-poisson_obj.ply in the same meshlab window 
 
 ### 4. Generate view information from registrated cameras
 
-#### 4.1
+#### 4.1 Remesh
 
- run `ACVD/aarun.bat`  
+run `ACVD/aarun.bat`  
  
- save undistort_feature/meshed-poisson_obj_remeshed.ply as undistort_feature/meshed-poisson_obj_remeshed.obj
+save undistort_feature/meshed-poisson_obj_remeshed.ply as undistort_feature/meshed-poisson_obj_remeshed.obj
 
-#### 4.2
+It is not necessary to reconstruct all the vertices on the pre-captured shape in our case. The remesh step will output an optimized 3D
+triangular mesh with a user defined vertex budget, which is controlled by `NVERTICES` in `aarun.bat`. 
+
+#### 4.2 uvatlas
 
 copy data_processing/device_configuration/extrinsic.bin to undistort_feature/
 copy Cheongsam/512.exr and 1024.exr to undistort_feature/
@@ -220,7 +226,7 @@ We recommend that you generate uv maps with resolution of 512x512 because it wil
 
 You can set `UVMAP_WIDTH` and `UVMAP_HEIGHT` to 1024 in `uv/uv_generator.bat` if you pursue higher quality.
 
-#### 4.3
+#### 4.3 Compute view information
 
 in `generate_texture/texgen.bat`, set `TEXTURE_RESOLUTION` to the certain resolution
 
@@ -231,7 +237,7 @@ choose the same line or the other reference on meshed-poisson_obj_remeshed.obj a
 The marker cylinder's diameter is 10cm, so we set `REAL_L` to 100.
 
 
-run `generate_texture/texgen.bat` to output view information of all registrated cameras
+run `generate_texture/texgen.bat` to output view information of all registrated cameras.
 
 ### 5. Gather data
 
@@ -254,7 +260,7 @@ Note: If you find the split.sh cannot run properly and complain about
     </tr>
     <tr>
         <td align="center">diffuse</td>
-        <td align="center">specular(with exposure -3 in photoshop)</td>
+        <td align="center">specular</td>
         <td align="center">roughness</td>
     </tr>
     <tr>
@@ -269,6 +275,9 @@ Note: If you find the split.sh cannot run properly and complain about
 </table>
 
 ### 7. Render results
+
+We use the anisotropic GGX model to represent reflectance. The object can be rendered with path tracing using NVIDIA OptiX or openGL.
+
 <table>
     <tr>
         <td align="center"><img src='./imgs/render1.png'></td> 
@@ -278,6 +287,9 @@ Note: If you find the split.sh cannot run properly and complain about
 </table>
 
 ## Reference & Third party tools
+Shining3D. 2021. EinScan Pro 2X Plus Handheld Industrial Scanner. Retrieved January, 2021 from https://www.einscan.com/handheld-
+3d-scanner/2x-plus/
+
 Colmap: https://demuc.de/colmap/
 
 Coherent Point Drift: https://ieeexplore.ieee.org/document/5432191
