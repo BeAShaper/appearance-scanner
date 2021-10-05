@@ -228,6 +228,8 @@ You can set `UVMAP_WIDTH` and `UVMAP_HEIGHT` to 1024 in `uv/uv_generator.bat` if
 
 #### 4.3 Compute view information
 
+downloads [embree](https://github.com/embree/embree/releases/tag/v3.13.1) and copy bin/embree3.dll, glfw3.dll, tbb12.dll to generate_texture/. 
+
 in `generate_texture/texgen.bat`, set `TEXTURE_RESOLUTION` to the certain resolution
 
 choose the same line or the other reference on meshed-poisson_obj_remeshed.obj and on the physical object, then meature the lengths of both. Set the results to `COLMAP_L` and `REAL_L`. `REAL_L` in mm.
