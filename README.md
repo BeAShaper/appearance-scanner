@@ -287,8 +287,7 @@ We use the anisotropic GGX model to represent reflectance. The object can be ren
 </table>
 
 ## Reference & Third party tools
-Shining3D. 2021. EinScan Pro 2X Plus Handheld Industrial Scanner. Retrieved January, 2021 from https://www.einscan.com/handheld-
-3d-scanner/2x-plus/
+Shining3D. 2021. EinScan Pro 2X Plus Handheld Industrial Scanner. Retrieved January, 2021 from https://www.einscan.com/handheld-3d-scanner/2x-plus/
 
 Colmap: https://demuc.de/colmap/
 
@@ -296,5 +295,6 @@ Coherent Point Drift: https://ieeexplore.ieee.org/document/5432191
 
 ACVD: https://github.com/valette/ACVD
 
+Embree: https://www.embree.org/
 
 
