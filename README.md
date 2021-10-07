@@ -228,13 +228,15 @@ You can set `UVMAP_WIDTH` and `UVMAP_HEIGHT` to 1024 in `uv/uv_generator.bat` if
 
 #### 4.3 Compute view information
 
-downloads [embree](https://github.com/embree/embree/releases/tag/v3.13.1) and copy bin/embree3.dll, glfw3.dll, tbb12.dll to generate_texture/. 
+Downloads [embree](https://github.com/embree/embree/releases/tag/v3.13.1) and copy bin/embree3.dll, glfw3.dll, tbb12.dll to generate_texture/. 
+
+Downloads [opencv](https://github.com/opencv/opencv/releases) and copy opencv_world#v.dll to generate_texture/.  We use opencv3.4.3 in our project.
 
 in `generate_texture/texgen.bat`, set `TEXTURE_RESOLUTION` to the certain resolution
 
 choose the same line or the other reference on meshed-poisson_obj_remeshed.obj and on the physical object, then meature the lengths of both. Set the results to `COLMAP_L` and `REAL_L`. `REAL_L` in mm.
 
-<img src="./imgs/SCALAR.png" width=60% title="scalar">
+<img src="./imgs/SCALAR2.png" width=40% title="scalar">
 
 The marker cylinder's diameter is 10cm, so we set `REAL_L` to 100.
 
@@ -252,7 +254,8 @@ run `gather_data/run.bat` to gather the inputs to the network for each valid pix
 3. Upload the entire folder generated in previous step to a linux server.  
 4. Change current path of terminal to `fitting_folder_for_server\fitting_temp\tf_ggx_render`, then run `split.sh` or `split1024.sh` according to the resolution you chosen. (split.sh is for 512. If you want to use custom texture map resolution, you may need to modify the $TEX_RESOLUTION in split.sh)
 5. When the fitting procedure finished, a folder named `Cheongsam/images_{resolution}/data_for_server/data/images/data_for_server/fitted_grey` will be generated. It contains the final texture maps, including normal_fitted_global.exr, tangent_fitted_global.exr, axay_fitted.exr, pd_fitted.exr and ps_fitted.exr.  
-Note: If you find the split.sh cannot run properly and complain about abscent which_server argument, it's probably caused by the difference of linux and windows. Reading in the sh file and writing it with no changing of content on sever can fix this issue.## Reference 
+Note: If you find the split.sh cannot run properly and complain about abscent which_server argument, it's probably caused by the difference of linux and windows. Reading in the sh file and writing it with no changing of content on sever can fix this issue.
+
 
 <table>
     <tr>

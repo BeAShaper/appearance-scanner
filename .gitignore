@@ -17,6 +17,10 @@ data_processing/extract_measurements/__pycache__/
 
 data_processing/gather_data/__pycache__/
 
+data_processing/generate_texture/embree3.dll
 
+data_processing/generate_texture/glfw3.dll
+
+data_processing/generate_texture/tbb12.dll
 
 appearance_scanner/__pycache__/
