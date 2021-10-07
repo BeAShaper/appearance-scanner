@@ -236,7 +236,7 @@ in `generate_texture/texgen.bat`, set `TEXTURE_RESOLUTION` to the certain resolu
 
 choose the same line or the other reference on meshed-poisson_obj_remeshed.obj and on the physical object, then meature the lengths of both. Set the results to `COLMAP_L` and `REAL_L`. `REAL_L` in mm.
 
-<img src="./imgs/SCALAR2.png" width=40% title="scalar">
+<img src="./imgs/scalar2.png" width=40% title="scalar">
 
 The marker cylinder's diameter is 10cm, so we set `REAL_L` to 100.
 
@@ -301,5 +301,7 @@ Coherent Point Drift: https://ieeexplore.ieee.org/document/5432191
 ACVD: https://github.com/valette/ACVD
 
 Embree: https://www.embree.org/
+
+OpenCV: https://opencv.org/
 
 
