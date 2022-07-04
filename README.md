@@ -204,6 +204,8 @@ After alignment done, run `CoherentPointDrift/run_pass2.bat`. meshed-poisson_obj
 
 You should open fused.ply and meshed-poisson_obj.ply in the same meshlab window to check the quality of alignment. It is a key factor in the final result.
 
+Open meshed-poisson_obj.ply and generate mesh file in meshlab. Export mesh file named meshed-poisson_obj.ply or you can transform the original mesh file here using Cheongsam.aln and trans.aln.
+
 ### 4. Generate view information from registrated cameras
 
 #### 4.1 Remesh
