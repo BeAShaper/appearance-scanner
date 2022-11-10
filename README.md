@@ -75,7 +75,7 @@ The reconstruction needs photographs taken with our scanner, a pre-trained netwo
 the pre-captured shape. Then the view information of each vertex can be assembled as the input of the network. Last, we fit the predicted grayscale specular lumitexel with L-BFGS-B, to obtain the refletance parameters.
 
 
-Download our [Cheongsam](https://drive.google.com/file/d/1KOAJcUrDdWgEWN_obL5ccwNYJRrgFdua/view?usp=sharing) test data and unzip it in appearance_scanner/data/.
+Download our [Cheongsam](https://drive.google.com/file/d/1z5qv0692Y-JDXfgElX7P3HWVbFn3L_Mb/view?usp=share_link) test data and unzip it in appearance_scanner/data/.
 
 
 <table>
